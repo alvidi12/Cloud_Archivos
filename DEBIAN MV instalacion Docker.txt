@@ -1,0 +1,36 @@
+Instalacion de Docker
+1. hacer ping
+2. entrar como superusuario: usermod -aG sudo andy
+
+
+actualice los paquetes de Linux Debian
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+Instalacion de paquetes requeridos por Docker-CE
+$ sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+
+Agregar la clave GPG oficial de Docker-CE (el comando \ continua en la siguiente linea)
+$ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+
+$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \ $(lsb_release -cs) \ stable"
+
+Agregar el repositorio de Docker-CE
+
+$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \ $(lsb_release -cs) \ stable"
+
+Actualizar indice de paquetes e instalar Docker
+$ sudo apt-get update
+$ sudo apt-get install docker-ce
+
+systemctl status docker
+systemctl enable docker
+
+Verificar con una imagen de prueba: (descarga la imagen, crea el contenedor y lo ejecuta)
+$ sudo docker run hello-word
+
+para desplegar imagenes cargadas:
+$ sudo docker image ls
+
+para desplegar los contenedores creados:
+$ sudo docker container ls -a

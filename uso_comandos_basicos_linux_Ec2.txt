@@ -1,0 +1,125 @@
+Using username "ec2-user".
+Authenticating with public key "andy"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-27-204 ~]$ sudo su
+[root@ip-172-31-27-204 ec2-user]# exit
+exit
+[ec2-user@ip-172-31-27-204 ~]$ mkdir ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ mkdir prueba
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1  prueba
+[ec2-user@ip-172-31-27-204 ~]$ cd prueba
+[ec2-user@ip-172-31-27-204 prueba]$ mkdir prueba
+[ec2-user@ip-172-31-27-204 prueba]$ ls
+prueba
+[ec2-user@ip-172-31-27-204 prueba]$ cd ..
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1  prueba
+[ec2-user@ip-172-31-27-204 ~]$ rmdir ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ ls
+prueba
+[ec2-user@ip-172-31-27-204 ~]$ yum -y update
+Error: This command has to be run with superuser privileges (under the root user        on most systems).
+[ec2-user@ip-172-31-27-204 ~]$ sudo yum -y update
+Last metadata expiration check: 0:11:40 ago on Wed May 22 23:21:07 2024.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[ec2-user@ip-172-31-27-204 ~]$ man yum
+[ec2-user@ip-172-31-27-204 ~]$ nano hola.txt
+[ec2-user@ip-172-31-27-204 ~]$ nano hola.txt
+[ec2-user@ip-172-31-27-204 ~]$ nano hola.txt
+[ec2-user@ip-172-31-27-204 ~]$ nano hola.txt
+[ec2-user@ip-172-31-27-204 ~]$ nano hola.txt
+[ec2-user@ip-172-31-27-204 ~]$ ls
+hola.txt  prueba
+[ec2-user@ip-172-31-27-204 ~]$ sudo useradd duoc
+[ec2-user@ip-172-31-27-204 ~]$ sudo passwd duoc
+Changing password for user duoc.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-27-204 ~]$ sudo nano /etc/passwd
+[ec2-user@ip-172-31-27-204 ~]$ sudo nano /etc/shadow
+[ec2-user@ip-172-31-27-204 ~]$ groupadd nuevogrupo
+groupadd: Permission denied.
+groupadd: cannot lock /etc/group; try again later.
+[ec2-user@ip-172-31-27-204 ~]$ sudo groupadd nuevogrupo
+[ec2-user@ip-172-31-27-204 ~]$ sudo nano /etc/group
+[ec2-user@ip-172-31-27-204 ~]$ ll
+total 4
+-rw-r--r--. 1 ec2-user ec2-user 38 May 22 23:39 hola.txt
+drwxr-xr-x. 3 ec2-user ec2-user 20 May 22 23:27 prueba
+[ec2-user@ip-172-31-27-204 ~]$ mkdir carpeta_duoc
+[ec2-user@ip-172-31-27-204 ~]$ chmod 367 carpeta_duoc
+[ec2-user@ip-172-31-27-204 ~]$ ls
+carpeta_duoc  hola.txt  prueba
+[ec2-user@ip-172-31-27-204 ~]$ ll
+total 4
+d-wxrw-rwx. 2 ec2-user ec2-user  6 May 23 00:00 carpeta_duoc
+-rw-r--r--. 1 ec2-user ec2-user 38 May 22 23:39 hola.txt
+drwxr-xr-x. 3 ec2-user ec2-user 20 May 22 23:27 prueba
+[ec2-user@ip-172-31-27-204 ~]$ chown duoc:ec2-user carpeta_duoc
+chown: changing ownership of 'carpeta_duoc': Operation not permitted
+[ec2-user@ip-172-31-27-204 ~]$ sudo chown duoc:ec2-user carpeta_duoc
+[ec2-user@ip-172-31-27-204 ~]$ ll
+total 4
+d-wxrw-rwx. 2 duoc     ec2-user  6 May 23 00:00 carpeta_duoc
+-rw-r--r--. 1 ec2-user ec2-user 38 May 22 23:39 hola.txt
+drwxr-xr-x. 3 ec2-user ec2-user 20 May 22 23:27 prueba
+[ec2-user@ip-172-31-27-204 ~]$
+[ec2-user@ip-172-31-27-204 ~]$ sudo chgrp duoc carpeta_duoc
+[ec2-user@ip-172-31-27-204 ~]$ ll
+total 4
+d-wxrw-rwx. 2 duoc     duoc      6 May 23 00:00 carpeta_duoc
+-rw-r--r--. 1 ec2-user ec2-user 38 May 22 23:39 hola.txt
+drwxr-xr-x. 3 ec2-user ec2-user 20 May 22 23:27 prueba
+[ec2-user@ip-172-31-27-204 ~]$ Using username "ec2-user".
+Authenticating with public key "andy"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-27-204 ~]$ sudo su
+[root@ip-172-31-27-204 ec2-user]# exit
+exit
+[ec2-user@ip-172-31-27-204 ~]$ mkdir ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ mkdir prueba
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1  prueba
+[ec2-user@ip-172-31-27-204 ~]$ cd prueba
+[ec2-user@ip-172-31-27-204 prueba]$ mkdir prueba
+[ec2-user@ip-172-31-27-204 prueba]$ ls
+prueba
+[ec2-user@ip-172-31-27-204 prueba]$ cd ..
+[ec2-user@ip-172-31-27-204 ~]$ ls
+ejemplo1  prueba
+[ec2-user@ip-172-31-27-204 ~]$ rmdir ejemplo1
+[ec2-user@ip-172-31-27-204 ~]$ ls
+prueba
+[ec2-user@ip-172-31-27-204 ~]$ yum -y update
+Error: This command has to be run with superuser privileges (under the root user        on most systems).
+[ec2-user@ip-172-31-27-204 ~]$ sudo yum -y update
+Last metadata expiration check: 0:11:40 ago on Wed May 22 23:21:07 2024.
+Dependencies resolved.
+[ec2-user@ip-172-31-27-204 ~]$r 20 May 22 23:27 pruebaxtduoceta_duoc
