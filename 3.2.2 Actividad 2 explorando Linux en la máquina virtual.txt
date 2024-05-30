@@ -1,0 +1,143 @@
+[ec2-user@ip-172-31-27-204 ~]$ echo "hola, mundo!"
+hola, mundo!
+[ec2-user@ip-172-31-27-204 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-27-204 ~]$ cd /
+[ec2-user@ip-172-31-27-204 /]$ mkdir practicaLinux
+mkdir: cannot create directory ‘practicaLinux’: Permission denied
+[ec2-user@ip-172-31-27-204 /]$ sudo mkdir practicaLinux
+[ec2-user@ip-172-31-27-204 /]$ ls
+bin   dev  home  lib64  media  opt            proc  run   srv  tmp  var
+boot  etc  lib   local  mnt    practicaLinux  root  sbin  sys  usr
+[ec2-user@ip-172-31-27-204 /]$ cd practicaLinux
+[ec2-user@ip-172-31-27-204 practicaLinux]$ nano test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ls
+test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo useradd Usuario1
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo useradd Usuario2
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo useradd Usuario3
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo passwd Usuario2
+Changing password for user Usuario2.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-27-204 practicaLinux]$ nano /etc/passwd
+[ec2-user@ip-172-31-27-204 practicaLinux]$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+libstoragemgmt:x:997:997:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:996:996:systemd Core Dumper:/:/usr/sbin/nologin
+systemd-timesync:x:995:995:systemd Time Synchronization:/:/usr/sbin/nologin
+chrony:x:994:994:chrony system user:/var/lib/chrony:/sbin/nologin
+ec2-instance-connect:x:993:993::/home/ec2-instance-connect:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+duoc:x:1001:1001::/home/duoc:/bin/bash
+Usuario1:x:1002:1003::/home/Usuario1:/bin/bash
+Usuario2:x:1003:1004::/home/Usuario2:/bin/bash
+Usuario3:x:1004:1005::/home/Usuario3:/bin/bash
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+-rw-r--r--. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chmod 600 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano prueba_1.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ls
+prueba_1.txt  test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+-rw-r--r--. 1 root root 0 May 29 23:38 prueba_1.txt
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chmod 300 prueba_1.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root root 0 May 29 23:38 prueba_1.txt
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano prueba_2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chmod 300 prueba_2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root root 0 May 29 23:42 prueba_2.txt
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano prueba_3.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chmod 670 prueba_3.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root root 0 May 29 23:42 prueba_2.txt
+-rw-rwx---. 1 root root 0 May 29 23:42 prueba_3.txt
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano prueba_4.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chmod 023 prueba_4.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root root 0 May 29 23:42 prueba_2.txt
+-rw-rwx---. 1 root root 0 May 29 23:42 prueba_3.txt
+-----w--wx. 1 root root 0 May 29 23:45 prueba_4.txt
+-rw-------. 1 root root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chown Usuario1 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root     root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root     root 0 May 29 23:42 prueba_2.txt
+-rw-rwx---. 1 root     root 0 May 29 23:42 prueba_3.txt
+-----w--wx. 1 root     root 0 May 29 23:45 prueba_4.txt
+-rw-------. 1 Usuario1 root 0 May 29 23:29 test.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo groupadd linuxGrupo
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod -a -G linuxGrupo usuario1
+usermod: user 'usuario1' does not exist
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod -a -G linuxGrupo Usuario1
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod -a -G linuxGrupo Usuario2
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo groupadd linuxGrupo2
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod -a -G linuxGrupo2 Usuario3
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod -a -G linuxGrupo2 Usuario2
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano /etc/group
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo usermod  -G linuxGrupo2 Usuario2
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano /etc/group
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo nano text2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ls
+prueba_1.txt  prueba_2.txt  prueba_3.txt  prueba_4.txt  test.txt  text2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root     root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root     root 0 May 29 23:42 prueba_2.txt
+-rw-rwx---. 1 root     root 0 May 29 23:42 prueba_3.txt
+-----w--wx. 1 root     root 0 May 29 23:45 prueba_4.txt
+-rw-------. 1 Usuario1 root 0 May 29 23:29 test.txt
+-rw-r--r--. 1 root     root 0 May 30 00:01 text2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chown Usuario2 txt2.txt
+chown: cannot access 'txt2.txt': No such file or directory
+[ec2-user@ip-172-31-27-204 practicaLinux]$ sudo chown Usuario2 text2.txt
+[ec2-user@ip-172-31-27-204 practicaLinux]$ ll
+total 0
+--wx------. 1 root     root 0 May 29 23:38 prueba_1.txt
+--wx------. 1 root     root 0 May 29 23:42 prueba_2.txt
+-rw-rwx---. 1 root     root 0 May 29 23:42 prueba_3.txt
+-----w--wx. 1 root     root 0 May 29 23:45 prueba_4.txt
+-rw-------. 1 Usuario1 root 0 May 29 23:29 test.txt
+-rw-r--r--. 1 Usuario2 root 0 May 30 00:01 text2.txt
