@@ -1,0 +1,212 @@
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 10.0.1.127:/ efs
+
+Using username "ec2-user".
+Authenticating with public key "andy2"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-10-0-1-237 ~]$ ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enX0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 0a:ff:fe:55:78:6f brd ff:ff:ff:ff:ff:ff
+    altname eni-089a62d0640b16c55
+    altname device-number-0
+    inet 10.0.1.237/24 metric 512 brd 10.0.1.255 scope global dynamic enX0
+       valid_lft 2984sec preferred_lft 2984sec
+    inet6 fe80::8ff:feff:fe55:786f/64 scope link
+       valid_lft forever preferred_lft forever
+[ec2-user@ip-10-0-1-237 ~]$ ping 10.0.1.79
+PING 10.0.1.79 (10.0.1.79) 56(84) bytes of data.
+64 bytes from 10.0.1.79: icmp_seq=124 ttl=127 time=0.639 ms
+64 bytes from 10.0.1.79: icmp_seq=125 ttl=127 time=0.534 ms
+64 bytes from 10.0.1.79: icmp_seq=126 ttl=127 time=0.516 ms
+64 bytes from 10.0.1.79: icmp_seq=127 ttl=127 time=0.512 ms
+64 bytes from 10.0.1.79: icmp_seq=128 ttl=127 time=0.620 ms
+64 bytes from 10.0.1.79: icmp_seq=129 ttl=127 time=0.534 ms
+64 bytes from 10.0.1.79: icmp_seq=130 ttl=127 time=0.566 ms
+64 bytes from 10.0.1.79: icmp_seq=131 ttl=127 time=0.656 ms
+k64 bytes from 10.0.1.79: icmp_seq=132 ttl=127 time=0.533 ms
+ill64 bytes from 10.0.1.79: icmp_seq=133 ttl=127 time=0.584 ms
+
+64 bytes from 10.0.1.79: icmp_seq=134 ttl=127 time=0.567 ms
+64 bytes from 10.0.1.79: icmp_seq=135 ttl=127 time=0.477 ms
+k64 bytes from 10.0.1.79: icmp_seq=136 ttl=127 time=0.547 ms
+i64 bytes from 10.0.1.79: icmp_seq=137 ttl=127 time=0.565 ms                  64 bytes from 10.0.1.79: icmp_seq=138 ttl=127 time=0.511 ms
+64 bytes from 10.0.1.79: icmp_seq=139 ttl=127 time=0.561 ms
+64 bytes from 10.0.1.79: icmp_seq=140 ttl=127 time=0.589 ms
+64 bytes from 10.0.1.79: icmp_seq=141 ttl=127 time=0.555 ms
+64 bytes from 10.0.1.79: icmp_seq=142 ttl=127 time=0.545 ms
+64 bytes from 10.0.1.79: icmp_seq=143 ttl=127 time=0.516 ms
+64 bytes from 10.0.1.79: icmp_seq=144 ttl=127 time=0.497 ms
+64 bytes from 10.0.1.79: icmp_seq=145 ttl=127 time=0.536 ms
+64 bytes from 10.0.1.79: icmp_seq=146 ttl=127 time=0.537 ms
+64 bytes from 10.0.1.79: icmp_seq=147 ttl=127 time=0.520 ms
+64 bytes from 10.0.1.79: icmp_seq=148 ttl=127 time=0.531 ms
+^C
+--- 10.0.1.79 ping statistics ---
+148 packets transmitted, 25 received, 83.1081% packet loss, time 152839ms
+rtt min/avg/max/mdev = 0.477/0.549/0.656/0.041 ms
+[ec2-user@ip-10-0-1-237 ~]$ mkdir mnt
+[ec2-user@ip-10-0-1-237 ~]$ cd mnt
+[ec2-user@ip-10-0-1-237 mnt]$ mkdir efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ sudo groupadd grupoaws
+[ec2-user@ip-10-0-1-237 mnt]$ sudo useradd usuario1 -G grupoaws
+[ec2-user@ip-10-0-1-237 mnt]$ sudo useradd usuario2 -G grupoaws
+[ec2-user@ip-10-0-1-237 mnt]$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+libstoragemgmt:x:997:997:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:996:996:systemd Core Dumper:/:/usr/sbin/nologin
+systemd-timesync:x:995:995:systemd Time Synchronization:/:/usr/sbin/nologin
+chrony:x:994:994:chrony system user:/var/lib/chrony:/sbin/nologin
+ec2-instance-connect:x:993:993::/home/ec2-instance-connect:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+usuario1:x:1001:1002::/home/usuario1:/bin/bash
+usuario2:x:1002:1003::/home/usuario2:/bin/bash
+[ec2-user@ip-10-0-1-237 mnt]$ cat /etc/group
+root:x:0:
+bin:x:1:
+daemon:x:2:
+sys:x:3:
+adm:x:4:ec2-user
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mem:x:8:
+kmem:x:9:
+wheel:x:10:ec2-user
+cdrom:x:11:
+mail:x:12:
+man:x:15:
+dialout:x:18:
+floppy:x:19:
+games:x:20:
+tape:x:33:
+video:x:39:
+ftp:x:50:
+lock:x:54:
+audio:x:63:
+users:x:100:
+nobody:x:65534:
+utmp:x:22:
+utempter:x:35:
+dbus:x:81:
+input:x:104:
+kvm:x:36:
+render:x:105:
+sgx:x:106:
+systemd-journal:x:190:ec2-user
+systemd-network:x:192:
+systemd-oom:x:999:
+systemd-resolve:x:193:
+ssh_keys:x:998:
+sshd:x:74:
+rpc:x:32:
+libstoragemgmt:x:997:
+systemd-coredump:x:996:
+systemd-timesync:x:995:
+chrony:x:994:
+ec2-instance-connect:x:993:
+stapusr:x:156:
+stapsys:x:157:
+stapdev:x:158:
+rpcuser:x:29:
+tcpdump:x:72:
+screen:x:84:
+ec2-user:x:1000:
+grupoaws:x:1001:usuario1,usuario2
+usuario1:x:1002:
+usuario2:x:1003:
+[ec2-user@ip-10-0-1-237 mnt]$ ls
+efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ ll
+total 0
+drwxr-xr-x. 2 ec2-user ec2-user 6 Jun 19 01:24 efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ sudo chmod 775 efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ ll
+total 0
+drwxrwxr-x. 2 ec2-user ec2-user 6 Jun 19 01:24 efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ pwd
+/home/ec2-user/mnt
+[ec2-user@ip-10-0-1-237 mnt]$ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 10.0.1.127:/ /home/ec2-user/mnt/efs-practica
+[ec2-user@ip-10-0-1-237 mnt]$ cd efs-practica
+[ec2-user@ip-10-0-1-237 efs-practica]$ sudo touch hola.txt
+[ec2-user@ip-10-0-1-237 efs-practica]$ ll
+total 4
+-rw-r--r--. 1 root root 0 Jun 19 01:33 hola.txt
+[ec2-user@ip-10-0-1-237 efs-practica]$ ll
+total 8
+-rw-r--r--. 1 root root 0 Jun 19 01:33 hola.txt
+-rw-r--r--. 1 root root 0 Jun 19 01:40 hola2.txt
+[ec2-user@ip-10-0-1-237 efs-practica]$
+
+
+Using username "ec2-user".
+Authenticating with public key "andy2"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Wed Jun 19 01:00:40 2024 from 179.56.215.146
+[ec2-user@ip-10-0-1-79 ~]$ mkdir mnt
+[ec2-user@ip-10-0-1-79 ~]$ cd mnt
+[ec2-user@ip-10-0-1-79 mnt]$ mkdir efs-practica
+[ec2-user@ip-10-0-1-79 mnt]$ sudo chmod 775 efs-practica
+[ec2-user@ip-10-0-1-79 mnt]$ sudo groupadd grupoaws
+[ec2-user@ip-10-0-1-79 mnt]$ usseradd usuario1 -G grupoaws
+-bash: usseradd: command not found
+[ec2-user@ip-10-0-1-79 mnt]$ useradd usuario1 -G grupoaws
+useradd: Permission denied.
+useradd: cannot lock /etc/group; try again later.
+[ec2-user@ip-10-0-1-79 mnt]$ sudo useradd usuario1 -G grupoaws
+[ec2-user@ip-10-0-1-79 mnt]$ sudo useradd usuario2 -G grupoaws
+[ec2-user@ip-10-0-1-79 mnt]$ sudo chmod 755 efs-practica
+[ec2-user@ip-10-0-1-79 mnt]$ pwd
+/home/ec2-user/mnt
+[ec2-user@ip-10-0-1-79 mnt]$ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 10.0.1.127:/ /home/ec2-user/mnt/efs-practica
+[ec2-user@ip-10-0-1-79 mnt]$ cd efs-practica
+[ec2-user@ip-10-0-1-79 efs-practica]$ sudo touch hola2.txt
+[ec2-user@ip-10-0-1-79 efs-practica]$ ll
+total 8
+-rw-r--r--. 1 root root 0 Jun 19 01:33 hola.txt
+-rw-r--r--. 1 root root 0 Jun 19 01:40 hola2.txt
+[ec2-user@ip-10-0-1-79 efs-practica]$
+
+

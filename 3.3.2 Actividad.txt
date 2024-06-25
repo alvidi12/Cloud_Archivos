@@ -1,0 +1,72 @@
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.91.210:/ efs
+
+Using username "ec2-user".
+Authenticating with public key "para_efs"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-89-168 ~]$ mkdir efs
+[ec2-user@ip-172-31-89-168 ~]$ cd efs
+[ec2-user@ip-172-31-89-168 efs]$ pwd
+/home/ec2-user/efs
+[ec2-user@ip-172-31-89-168 efs]$
+
+[ec2-user@ip-172-31-89-168 efs]$
+[ec2-user@ip-172-31-89-168 efs]$
+[ec2-user@ip-172-31-89-168 efs]$ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.91.210:/ /home/ec2-user/efs
+[ec2-user@ip-172-31-89-168 efs]$ df -h
+Filesystem       Size  Used Avail Use% Mounted on
+devtmpfs         4.0M     0  4.0M   0% /dev
+tmpfs            475M     0  475M   0% /dev/shm
+tmpfs            190M  2.9M  188M   2% /run
+/dev/xvda1       8.0G  1.6G  6.5G  20% /
+tmpfs            475M     0  475M   0% /tmp
+/dev/xvda128      10M  1.3M  8.7M  13% /boot/efi
+tmpfs             95M     0   95M   0% /run/user/1000
+172.31.91.210:/  8.0E     0  8.0E   0% /home/ec2-user/efs
+[ec2-user@ip-172-31-89-168 efs]$ cd
+[ec2-user@ip-172-31-89-168 ~]$ ls
+efs
+[ec2-user@ip-172-31-89-168 ~]$ ll
+total 4
+drwxr-xr-x. 2 root root 6144 Jun 12 23:28 efs
+[ec2-user@ip-172-31-89-168 ~]$ sudo chown ec2-user:root efs
+[ec2-user@ip-172-31-89-168 ~]$ ll
+total 4
+drwxr-xr-x. 2 ec2-user root 6144 Jun 12 23:28 efs
+[ec2-user@ip-172-31-89-168 ~]$ sudo nano /etc/fstab
+[ec2-user@ip-172-31-89-168 ~]$ cd efs
+[ec2-user@ip-172-31-89-168 efs]$ mkdir respaldo
+[ec2-user@ip-172-31-89-168 efs]$ nano prueba.txt
+[ec2-user@ip-172-31-89-168 efs]$
+
+*Reinicio
+
+Using username "ec2-user".
+Authenticating with public key "para_efs"
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Thu Jun 13 00:00:08 2024 from 179.56.215.146
+[ec2-user@ip-172-31-89-168 ~]$ ls
+efs
+[ec2-user@ip-172-31-89-168 ~]$ cd efs
+[ec2-user@ip-172-31-89-168 efs]$ ls
+respaldo
+[ec2-user@ip-172-31-89-168 efs]$
+
+
